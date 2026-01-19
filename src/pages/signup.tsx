@@ -15,7 +15,7 @@ export const Signup = () => {
   const navigate = useNavigate();
 
   const register = async () => {
-    axios.post("http://localhost:8000/api/v1/user/register", {
+    axios.post("https://payx-fwkf.onrender.com/api/v1/user/register", {
       fullname,
       username,
       password,

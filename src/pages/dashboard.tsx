@@ -4,6 +4,7 @@ import { Appbar } from "../components/appbar";
 import { Balance } from "../components/balance";
 import { UserList } from "../components/user";
 
+
 interface BalanceResponse {
   statusCode: number;
   data: {
@@ -20,7 +21,7 @@ export default function Dashboard() {
     const fetchBalance = async () => {
       try {
         const res = await axios.get<BalanceResponse>(
-          "http://localhost:8000/api/v1/user/account/balance",
+          `https://payx-fwkf.onrender.com/api/v1/user/account/balance`,
           {
             withCredentials: true,
           }

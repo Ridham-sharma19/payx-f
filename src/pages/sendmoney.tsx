@@ -2,13 +2,14 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
+
 export const SendMoney = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const id = searchParams.get("id");
   const name = searchParams.get("name") || "";
-  const [amount, setAmount] = useState<string>(""); // ✅ start empty
+  const [amount, setAmount] = useState<string>(""); 
   const [loading, setLoading] = useState(false);
 
   const handleTransfer = async () => {
@@ -21,7 +22,7 @@ export const SendMoney = () => {
       setLoading(true);
 
       await axios.post(
-        "http://localhost:8000/api/v1/user/account/transaction",
+        "https://payx-fwkf.onrender.com/api/v1/user/account/transaction",
         {
           to: id,
           amount: Number(amount),
