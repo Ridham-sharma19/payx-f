@@ -22,7 +22,7 @@ export const Signin = () => {
     try {
       setLoading(true);
 
-      const response = await api.post("/api/v1/user/login", { email, password });
+       await api.post("/api/v1/user/login", { email, password });
 
    
       navigate("/dashboard");

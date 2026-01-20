@@ -23,7 +23,7 @@ export const Signup = () => {
 
     try {
       setLoading(true);
-      const response = await api.post("/api/v1/user/register", {
+       await api.post("/api/v1/user/register", {
         fullname,
         username,
         password,
