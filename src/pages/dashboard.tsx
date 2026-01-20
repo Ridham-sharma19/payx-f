@@ -3,6 +3,7 @@ import axios from "axios";
 import { Appbar } from "../components/appbar";
 import { Balance } from "../components/balance";
 import { UserList } from "../components/user";
+import { BACKEND_URL } from "../congig";
 
 
 interface BalanceResponse {
@@ -21,7 +22,7 @@ export default function Dashboard() {
     const fetchBalance = async () => {
       try {
         const res = await axios.get<BalanceResponse>(
-          `https://payx-fwkf.onrender.com/api/v1/user/account/balance`,
+          `${BACKEND_URL}/api/v1/user/account/balance`,
           {
             withCredentials: true,
           }

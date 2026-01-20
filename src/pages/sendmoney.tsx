@@ -1,6 +1,7 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import { BACKEND_URL } from "../congig";
 
 
 export const SendMoney = () => {
@@ -22,7 +23,7 @@ export const SendMoney = () => {
       setLoading(true);
 
       await axios.post(
-        "https://payx-fwkf.onrender.com/api/v1/user/account/transaction",
+        `${BACKEND_URL}/api/v1/user/account/transaction`,
         {
           to: id,
           amount: Number(amount),

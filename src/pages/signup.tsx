@@ -6,6 +6,7 @@ import { InputBox } from "../components/input";
 import { SubHeading } from "../components/subheading";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../congig";
 
 export const Signup = () => {
   const [fullname, setFullName] = useState("");
@@ -15,7 +16,7 @@ export const Signup = () => {
   const navigate = useNavigate();
 
   const register = async () => {
-    axios.post("https://payx-fwkf.onrender.com/api/v1/user/register", {
+    axios.post(`${BACKEND_URL}/api/v1/user/register`, {
       fullname,
       username,
       password,

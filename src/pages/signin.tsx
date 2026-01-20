@@ -6,7 +6,8 @@ import { SubHeading } from "../components/subheading";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie"; // ✅ import js-cookie
+import Cookies from "js-cookie";
+import { BACKEND_URL } from "../congig";
 
 export const Signin = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ export const Signin = () => {
 
   const login = async () => {
     try {
-      const res = await axios.post("https://payx-fwkf.onrender.com/api/v1/user/login", {
+      const res = await axios.post(`${BACKEND_URL}/api/v1/user/login`, {
         email,
         password,
       });
