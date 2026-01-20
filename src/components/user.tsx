@@ -79,7 +79,7 @@ export const UserList = () => {
                 </div>
 
                
-                <Button onClick={(e) => {
+                <Button onClick={() => {
                 navigate("/send?id=" + user._id + "&name=" + user.fullname);
             }} label={"Send Money"} />
               </div>
