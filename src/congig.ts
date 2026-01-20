@@ -1,2 +1,2 @@
 
-export const BACKEND_URL = "http://localhost:8000"
+export const BACKEND_URL = "https://payx-1-fbge.onrender.com"
