@@ -7,7 +7,7 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans">
-      {/* Navbar */}
+    
       <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center border-b border-gray-200">
         <h1 className="text-2xl font-bold text-[#002970]">
           Pay<span className="text-[#00baf2]">X</span>
@@ -47,7 +47,7 @@ const LandingPage: React.FC = () => {
   
         <div className="flex justify-center">
           <div className="relative w-72 h-[480px] bg-gradient-to-br from-[#002970] to-[#001f52] rounded-3xl p-6 text-white shadow-2xl">
-            {/* Notch for phone look */}
+       
             <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-20 h-6 bg-black rounded-b-2xl"></div>
             
             <div className="mt-12">

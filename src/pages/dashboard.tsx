@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "../congig";
 import { Appbar } from "../components/appbar";
 import { Balance } from "../components/balance";
 import { UserList } from "../components/user";
-import { BACKEND_URL } from "../congig";
-
 
 interface BalanceResponse {
   statusCode: number;
@@ -17,23 +15,18 @@ interface BalanceResponse {
 
 export default function Dashboard() {
   const [balance, setBalance] = useState<number | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchBalance = async () => {
       try {
-        const res = await axios.get<BalanceResponse>(
-          `${BACKEND_URL}/api/v1/user/account/balance`,
-          {
-            withCredentials: true,
-          }
-        );
-
+        const res = await api.get<BalanceResponse>("/api/v1/user/account/balance"); 
         setBalance(res.data.data.balance);
       } catch (err: any) {
-        console.error(
-          "Error fetching balance:",
-          err.response?.data || err.message
-        );
+        console.error("Error fetching balance:", err.response?.data || err.message);
+        alert(err.response?.data?.message || "Failed to fetch balance. Please login again.");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -41,10 +34,13 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="flex flex-col">
-      <Appbar  />
-      <Balance value={balance ?? 0} />
-      <UserList/>
+    <div className="flex flex-col gap-4">
+      <Appbar />
+      
+      <Balance value={loading ? 0 : balance ?? 0} />
+       
+
+      <UserList />
     </div>
   );
 }

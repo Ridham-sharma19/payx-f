@@ -1,8 +1,6 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useState } from "react";
-import { BACKEND_URL } from "../congig";
-
+import { api } from "../congig";
 
 export const SendMoney = () => {
   const [searchParams] = useSearchParams();
@@ -10,10 +8,15 @@ export const SendMoney = () => {
 
   const id = searchParams.get("id");
   const name = searchParams.get("name") || "";
-  const [amount, setAmount] = useState<string>(""); 
+  const [amount, setAmount] = useState<string>("");
   const [loading, setLoading] = useState(false);
 
   const handleTransfer = async () => {
+    if (!id) {
+      alert("Receiver not found!");
+      return;
+    }
+
     if (!amount || Number(amount) <= 0) {
       alert("Please enter a valid amount greater than 0.");
       return;
@@ -22,22 +25,16 @@ export const SendMoney = () => {
     try {
       setLoading(true);
 
-      await axios.post(
-        `${BACKEND_URL}/api/v1/user/account/transaction`,
-        {
-          to: id,
-          amount: Number(amount),
-        },
-        {
-          withCredentials: true,
-        }
-      );
+      const res = await api.post("/api/v1/user/account/transaction", {
+        to: id,
+        amount: Number(amount),
+      });
 
-      alert("✅ Transfer Successful!");
+      alert(res.data?.data?.message || "✅ Transfer Successful!");
       navigate("/dashboard");
     } catch (error: any) {
       console.error("❌ Transfer failed:", error.response?.data || error.message);
-      alert(error.response?.data?.message || "Transfer failed");
+      alert(error.response?.data?.message || "Transfer failed!");
     } finally {
       setLoading(false);
     }
@@ -76,7 +73,7 @@ export const SendMoney = () => {
 
         <button
           onClick={handleTransfer}
-          disabled={loading || !amount}
+          disabled={loading || !amount || !id}
           className={`w-full py-2 text-white rounded-md transition-colors ${
             loading
               ? "bg-gray-400 cursor-not-allowed"
