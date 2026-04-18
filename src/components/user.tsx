@@ -42,9 +42,9 @@ export const UserList = () => {
   }, [filter]);
 
   return (
-    <div className="w-full mx-auto mt-4 p-4 bg-transparent">
+    <div className="w-full md:w-[60vw] mx-auto mt-4 p-4 bg-transparent">
       <div>
-        <h3 className="text-base font-semibold mb-2">Users</h3>
+        <h3 className="text-xl font-semibold mb-2">Users</h3>
 
         <div className="flex items-center space-x-3 w-full">
           <input
